@@ -4,11 +4,17 @@
 #include <stdio.h>
 #include <unistd.h>
 
+/***********************************************/
+/*                      hashtags          */
+/**********************************************/
+#define OUTPUT_BUF_SIZE 1024
+#define BUF_FLUSH -1
+
 /**********************************************/
 /**               string functions.c        */
 /*********************************************/
-int _strlen(char *str);
-int _strcmp(char*, char *);
+int _strlen(const char *str);
+int _strcmp(const char*,const char *);
 char *starts_with(const char *, const char *);
 char *_strcat(char*, char*);
 
