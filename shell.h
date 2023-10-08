@@ -14,12 +14,12 @@
 /**               string functions.c        */
 /*********************************************/
 int _strlen(const char *str);
-int _strcmp(const char*,const char *);
+int _strcmp(const char*, const char *);
 char *starts_with(const char *, const char *);
 char *_strcat(char*, char*);
 
 /**********************************************/
-/**               string functions.c        */
+/**               string functions2.c        */
 /*********************************************/
 char *_strcpy(char *, char *);
 char *_strdup(const char *);
@@ -27,9 +27,9 @@ void _puts(char *);
 int _putchar(char);
 
 /**********************************************/
-/**               string functions.c        */
+/**               string functions3.c        */
 /*********************************************/
-char *_atrncpy(char *, char *, int);
+char *_strncpy(char *destination, const char *source, int copy_numbers);
 char *_atrncat(char *, char *, int);
 char *_atrchr(char *, char);
 
