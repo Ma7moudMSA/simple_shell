@@ -30,15 +30,14 @@ int _putchar(char);
 /**               string functions3.c        */
 /*********************************************/
 char *_strncpy(char *destination, const char *source, int copy_numbers);
-char *_atrncat(char *, char *, int);
-char *_atrchr(char *, char);
+char *_strncat(char *destination, char *source, int *copy_numbers);
+char *_strchr(char *source, char c);
 
 /**********************************************/
-/**               string functions.c        */
+/**               string functions4.c        */
 /*********************************************/
-char **strlow(char *, char *);
-char **strlow2(char*, char);
-
+char **strtow(char *d, char *str);
+char **strtow2(char *d, char *str);
 
 
 #endif
