@@ -1,4 +1,4 @@
-#include <shell.h>
+#include "shell.h"
 
 /**
  * _strncpy - Copy a string,  version of the strncpy function.
@@ -35,7 +35,7 @@ char *_strncpy(char *destination, const char *source, int copy_numbers)
  *
  * Return: the concatenated string
 */
-char *_strncat(char *destination, char *source, int *copy_numbers)
+char *_strncat(char *destination, char *source, int copy_numbers)
 {
 		int I, j;
 	char *s = destination;
@@ -44,7 +44,7 @@ char *_strncat(char *destination, char *source, int *copy_numbers)
 	while (destination[I++] != '\0')
 	{}
 
-	if (j < copy_numbers)
+	while (j < copy_numbers && source[j] != '\0')
 	{
 		destination[I++] = source[j++];
 	}

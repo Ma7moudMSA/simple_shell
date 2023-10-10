@@ -3,6 +3,8 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>
+#include <stdbool.h>
 
 /***********************************************/
 /*                      hashtags          */
@@ -30,7 +32,7 @@ int _putchar(char);
 /**               string functions3.c        */
 /*********************************************/
 char *_strncpy(char *destination, const char *source, int copy_numbers);
-char *_strncat(char *destination, char *source, int *copy_numbers);
+char *_strncat(char *destination, char *source, int copy_numbers);
 char *_strchr(char *source, char c);
 
 /**********************************************/

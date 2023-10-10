@@ -61,9 +61,12 @@ void _puts(char *str)
 {
 	char *a = str;
 
+	if (!str)
+		return;
+
 	while (*str)
 		_putchar(*str++);
-	return (str - a);
+	
 }
 
 /**
