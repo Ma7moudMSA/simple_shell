@@ -44,3 +44,52 @@ int _isalpha(int chara)
 	else
 		return (0);
 }
+
+
+/**
+* _erroratoi - fn name
+* @s: converted string
+*
+* Return: if no num 0 else num and -1 in error
+*/
+
+int _erroratoi(char *s)
+{
+	int i = 0;
+	unsigned long int result = 0;
+
+	if (*s == '+')
+		s++;
+	for (i = 0; s[i] != '\0'; i++)
+	{
+		if (s[i] >= '0' && s[i] <= '9')
+		{
+			result *= 10;
+			result += (s[i] - '0');
+			if (result > INT_MAX)
+				return (-1);
+		}
+		else
+			return (-1);
+	}
+	return (result);
+}
+
+/**
+* p_error - print error message
+* @information: parameter
+* @error_string: error type
+*
+* Return: 0 no num -1 if error
+*/
+
+void p_error(info_t *information, char *error_string)
+{
+	_puts(information->fname);
+	_puts(": ");
+	_puts(information->count_line, STDERR_FILENO);
+	_puts(": ");
+	_puts(information->argv[0]);
+	_puts(": ");
+	_puts(error_string);
+}
