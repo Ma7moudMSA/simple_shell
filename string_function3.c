@@ -15,8 +15,10 @@ char *_strncpy(char *destination, const char *source, int copy_numbers)
 
 	I = 0;
 	while (source[I] != '\0' && I < copy_numbers - 1)
-		destination[I] = source[I++];/* enters a loop that continues*/
-									/*until it has copied copy_numbers - 1*/
+	{
+		destination[I] = source[I];
+		I++;
+	}
 	if (copy_numbers > I)
 	{ /*enters another loop that fills the rest of the destination string */
 		/*with null characters up to copy_numbers*/

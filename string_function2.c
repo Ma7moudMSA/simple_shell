@@ -61,11 +61,11 @@ void _puts(char *str)
 {
 	char *a = str;
 
-	if (!str)
+	if (!a)
 		return;
 
-	while (*str)
-		_putchar(*str++);
+	while (*a)
+		_putchar(*a++);
 
 }
 

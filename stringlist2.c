@@ -14,7 +14,7 @@ size_t list_length(const l_t *head)
 	while (head)
 	{
 		head = head->next;
-		i++
+		i++;
 	}
 	return (i);
 }
@@ -46,7 +46,7 @@ char **list_string(l_t *head)
 		{
 			for (j = 0; j < i; j++)
 				free(strs[j]);
-			free[strs];
+			free(strs);
 			return (NULL);
 		}
 
@@ -123,7 +123,7 @@ ssize_t get_node_i(l_t *head, l_t *node)
 		if (head == node)
 			return (i);
 		head = head->next;
-		i++
+		i++;
 	}
 	return (-1);
 }

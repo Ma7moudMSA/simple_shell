@@ -43,7 +43,7 @@ l_t *add_node(l_t **head, const char *str, int num)
 * Return: we malo ya gameel
 */
 
-l_t *add_node_end(l_t **head, const shar *str, int num)
+l_t *add_node_end(l_t **head, const char *str, int num)
 {
 	l_t *n_n, *node;
 
@@ -54,7 +54,7 @@ l_t *add_node_end(l_t **head, const shar *str, int num)
 	n_n = malloc(sizeof(l_t));
 	if (!n_n)
 		return (NULL);
-	_memset((void *)n_n, 0, sizeof(l_t))
+	_memset((void *)n_n, 0, sizeof(l_t));
 	n_n->num = num;
 	if (str)
 	{
@@ -93,7 +93,7 @@ size_t p_list_str(const l_t *head)
 		_puts(head->str ? head->str : "(nil)");
 		_puts("\n");
 		head = head->next;
-		index++
+		index++;
 	}
 	return (index);
 }
@@ -161,5 +161,5 @@ void free_list(l_t **head)
 		free(node);
 		node = n_node;
 	}
-	*head = ptr;
+	*head = NULL;
 }
