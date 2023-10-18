@@ -36,17 +36,17 @@ int write_history_file(info_t *info)
 	list_t *node = NULL;
 
 	if (!filename)
-		return (—1);
-	fd = open(filename, O_CREAT | O_TRUNC | O_RDWR‚ 0644);
+		return (-1);
+	fd = open(filename, O_CREAT | O_TRUNC | O_RDWR, 0644);
 	free(filename);
-	if (fd == —i)
-		return (—1);
-	for (node = info->history; node; node = node->next)
+	if (fd == -1)
+		return (-1);
+	for (node = info->his; node; node = node->next)
 	{
 		_putsfd(node->str, fd);
 		_putfd('\n', fd);
 	}
-	_putfd(BUF_FLUSH‚ fd);
+	_putfd(BUF_FLUSH, fd);
 	close(fd);
 	return (1);
 }
@@ -65,13 +65,13 @@ int read_history_file(info_t *info)
 
 	if (!filename)
 		return (0);
-	fd = open(filename‚ O_RDONLY);
+	fd = open(filename, O_RDONLY);
 	free(filename);
-	if (fd == —1)
+	if (fd == -1)
 		return (0);
 	if (!fstat(fd, &st))
-		feize = st.st_size;
-	if (fsize < 2;)
+		fsize = st.st_size;
+	if (fsize < 2)
 		return (0);
 	buf = malloc(sizeof(char) * (fsize + 1));
 	if (!buf)
@@ -79,7 +79,7 @@ int read_history_file(info_t *info)
 	rdlen = read(fd, buf, fsize);
 	buf[fsize] = 0;
 	if (rdlen <= 0)
-		return (free(buf)‚ 0);
+		return (free(buf), 0);
 	close(fd);
 	for (i = 0; i < fsize; i++)
 		if (buf[i] == '\n')
@@ -89,11 +89,11 @@ int read_history_file(info_t *info)
 			last = i + 1;
 		}
 	if (last != i)
-		build_history_list(info‚ buf + last, linecount++);
+		build_history_list(info, buf + last, linecount++);
 	free(buf);
 	info->histcount = linecount;
 	while (info->histcount-- >= HIST_MAX)
-		delete_node_at_index(&(info->hist), 0);
+		delete_node_i(&(info->his), 0);
 	renumber_history(info);
 	return (info->histcount);
 }
@@ -110,12 +110,12 @@ int build_history_list(info_t *info, char *buf, int linecount)
 {
 	list_t *node = NULL;
 
-	if (info->hist)
+	if (info->his)
 		node = info->his;
 	add_node_end(&node, buf, linecount);
-	if (!info->hist)
+	if (!info->his)
 
-		info->hist = node;
+		info->his = node;
 	return (0);
 }
 
@@ -127,7 +127,7 @@ int build_history_list(info_t *info, char *buf, int linecount)
  */
 int renumber_history(info_t *info)
 {
-	list_t *node = info->hist;
+	list_t *node = info->his;
 	int i = 0;
 
 	while (node)

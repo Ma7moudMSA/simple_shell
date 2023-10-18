@@ -107,7 +107,7 @@ int print_decimal(int value, int file)
 	unsigned int absl, c;
 
 	if (file == STDERR_FILENO)
-		__putchar == _errorputchar;
+		__putchar = _errorputchar;
 	if (value < 0)
 	{
 		absl = -value;
