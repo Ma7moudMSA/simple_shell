@@ -9,7 +9,7 @@
 
 int _myhist(info_t *inf)
 {
-	print_l(info_t->his);
+	p_list(inf->his);
 	return (0);
 }
 
@@ -29,10 +29,10 @@ int unsetalias(info_t *info, char *str)
 	ptr = strchr(str, '=');
 	if (!ptr)
 		return (1);
-	cha = *p;
+	cha = *ptr;
 	*ptr = 0;
-	r = delete_node_at_index(&(info->alias),
-		get_node_index(info->alias, node_starts_with(info->alias, str, -1)));
+	r = delete_node_i(&(info->alias),
+		get_node_i(info->alias, node_starts_with(info->alias, str, -1)));
 	*ptr = cha;
 	return (r);
 }
@@ -118,4 +118,3 @@ int _myalias(info_t *info)
 
 	return (0);
 }
-

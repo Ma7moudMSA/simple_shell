@@ -18,15 +18,14 @@ int _myex(info_t *info)
 		{
 			info->status = 2;
 			p_error(info, "Illegal number: ");
-			_eputs(info->ergv[1]);
-			_eputchar('\n');
+			_errorputs(info->argv[1]);
+			_errorputchar('\n');
 			return (1);
 		}
-		info->err_num = _erroratoi(info->argv[1]);
+		info->err = _erroratoi(info->argv[1]);
 		return (-2);
 	}
-	info->err_num;
-	= -1;
+	info->err = -1;
 	return (-2);
 }
 
@@ -69,7 +68,7 @@ int _mycurrentdir(info_t *info)
 	if (changedir == -1)
 	{
 		p_error(info, "can't cd to");
-		_eputs(info->argv[1]), _eputchar('\n');
+		_errorputs(info->argv[1]), _errorputchar('\n');
 	}
 	else
 	{
