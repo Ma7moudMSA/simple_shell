@@ -179,5 +179,14 @@ size_t p_list_str(const l_t *head);
 int delete_node_i(l_t **head, unsigned int i);
 void free_list(l_t **head);
 
+size_t list_length(const l_t *head);
+char **list_string(l_t *head);
+size_t p_list(const l_t *head);
+l_t *node_starts_with(l_t *node, char *prefix, char c);
+ssize_t get_node_i(l_t *head, l_t *node);
+
+
+
+
 
 #endif
