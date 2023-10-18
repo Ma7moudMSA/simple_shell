@@ -53,13 +53,14 @@ int find_builtin(info_t *info)
 {
     int I built_in_ret = -1;
     builtin_table builtintbl[] = {
-        {"exit", _myexit},
+        {"exit", _myex},
         {"env", _myenv},
-        {"help", _myhelp},
-        {"history", _myhistory},
+        {"help", _help},
+        {"history", _myhist},
         {"setenv", _mysetenv},
         {"unsetenv", _myunsetenv},
-        {"cd", _mycd} {"alias", _myalias},
+        {"cd", _mycurrentdir},
+         {"alias", _myalias},
         {NULL, NULL}};
     for (I = 0; builtintbl[I].type; I++)
         if (_strcmp(info->argv[0], builtinbl[I].type) == 0)
