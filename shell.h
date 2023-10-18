@@ -185,6 +185,10 @@ size_t p_list(const l_t *head);
 l_t *node_starts_with(l_t *node, char *prefix, char c);
 ssize_t get_node_i(l_t *head, l_t *node);
 
+void _errorputs(char *str);
+void _errorputchar(char c);
+int _putfd(char c, int fd);
+int _putsfd(char *str, int fd);
 
 
 
