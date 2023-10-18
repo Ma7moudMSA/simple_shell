@@ -27,15 +27,15 @@ int _strlen(const char *Copy_string)
  *
  * Return: negative if string1 is less than string2
  * and positive if string1 is greater
-*/
+ */
 int _strcmp(const char *string1, const char *string2)
 {
 	while (*string1 && *string2)
 	{
 		if (*string1 != *string2)
 			return (*string1 - *string2);
-			string1++;
-			string2++;
+		string1++;
+		string2++;
 	}
 	if (*string1 == *string2)
 	{
@@ -51,7 +51,7 @@ int _strcmp(const char *string1, const char *string2)
  * @Needle: the subdtring to find
  *
  * Return: pointer to the destination in the buffer
-*/
+ */
 char *starts_with(const char *haystack, const char *Needle)
 {
 	while (*Needle)
@@ -66,7 +66,7 @@ char *starts_with(const char *haystack, const char *Needle)
  * @source: the source of the buffer
  *
  * Return: pointer to the desitination buffer
-*/
+ */
 char *_strcat(char *destination, char *source)
 {
 	char *return_value = destination;

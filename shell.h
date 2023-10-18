@@ -109,6 +109,14 @@ char *_strchr(char *source, char c);
 char **strtow(char *d, char *str);
 char **strtow2(char *d, char *str);
 
+/***********************************************/
+/*                      info.c          */
+/**********************************************/
+void clear_info(info_t *info);
+void set_info(info_t *info, char **av);
+void free_info(info_t *info);
+
+
 
 /***************Memory**************/
 char *_memset(char*, char, unsigned int);
