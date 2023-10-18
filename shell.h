@@ -92,7 +92,6 @@ typedef struct passinfo
 #define CMD_AND 2
 #define CMD_CHAIN 3
 
-extern char **environ;
 
 extern char **environ;
 /**********************************************/
