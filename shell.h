@@ -166,7 +166,7 @@ int renumber_history(info_t *info);
 
 /***************Memory**************/
 char *_memset(char*, char, unsigned int);
-void ffree(char **);
+void ffree(char **strofstr);
 void *_realloc(void *, unsigned int, unsigned int);
 
 /**************atoi_isdelim_interactive_*******/
@@ -197,7 +197,7 @@ int replacing_vars(info_t *info);
 int replacingStrings(char **o, char *n);
 
 l_t *add_node(l_t **head, const char *str, int num);
-l_t *add_node_end(l_t **head, const shar *str, int num);
+l_t *add_node_end(l_t **head, const char *str, int num);
 size_t p_list_str(const l_t *head);
 int delete_node_i(l_t **head, unsigned int i);
 void free_list(l_t **head);
@@ -209,13 +209,13 @@ l_t *node_starts_with(l_t *node, char *prefix, char c);
 ssize_t get_node_i(l_t *head, l_t *node);
 
 void _errorputs(char *str);
-void _errorputchar(char c);
+int _errorputchar(char c);
 int _putfd(char c, int fd);
 int _putsfd(char *str, int fd);
 
 
 ssize_t input_buf(info_t *info, char **buf, size_t *len);
-void siginthandler(__attribute__((unsused)) int sig_num);
+void siginthandler(__attribute__((unused)) int sig_num);
 ssize_t get_input(info_t *info);
 ssize_t read_buf(info_t *info, char *buf, size_t *I);
 int _getline(info_t *info, char **ptr, size_t *length);
@@ -226,6 +226,12 @@ int _erroratoi(char *s);
 int print_decimal(int value, int file);
 char *conv_num(long int num, int base, int flags);
 void rmv_comments(char *buf);
+
+int hsh(info_t *info, char **av);
+void find_cmd(info_t *info);
+int find_builtin(info_t *info);
+void find_cmd(info_t *info);
+void fork_cmd(info_t *info);
 
 
 
