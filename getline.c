@@ -1,6 +1,19 @@
 #include "shell.h"
 
 /**
+ * siginthandler - blocks CTRL + C
+ * @sig_num: number of
+ *
+ * Return: void
+ */
+void siginthandler(__attribute__((unused)) int sig_num) 
+{
+	_puts("\n");
+	_puts("$ ");
+	_putchar(BUF_FLUSH);
+}
+
+/**
  * input_buf -  buffer
  * @info: struct paramterter
  * @buf: address to the buffer
@@ -19,36 +32,24 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 		*buf = NULL;
 		signal(SIGINT, siginthandler);
 #if USE_GILINE
-		read = getline(buf, &len_read, stdin);
+		read = _getline(buf, &len_read, stdin);
 #else
-		read = getline(info, buf, &len_read);
+		read = _getline(info, buf, &len_read);
 #endif
 		if (read > 0)
 		{
 			if ((*buf)[(read) - 1] == '\n')
 				(*buf)[(read--) - 1] = '\0';
 			info->count_line_flag = 1;
-			remove_comments(*buf);
-			build_history_list(info, buf, info->histcount++);
-			*len_read = read;
-			info->type_cmd_buf = buf;
+			rmv_comments(*buf);
+			build_history_list(info, *buf, info->histcount++);
+			*len = read;
+			info->ptr_buf_cmd = buf;
 		}
 	}
 	return (read);
 }
 
-/**
- * siginthandler - blocks CTRL + C
- * @sig_num: number of
- *
- * Return: void
- */
-void siginthandler(__attribute__((unsused)) int sig_num)
-{
-	_puts("\n");
-	_puts("$ ");
-	_putchar(BUF_FLUSH);
-}
 /**
  * get_input - get input
  * @info: information
@@ -65,16 +66,16 @@ ssize_t get_input(info_t *info)
 	_putchar(BUF_FLUSH);
 	r = input_buf(info, &buf, &len);
 	if (r == -1)
-		return (info, &buf, &len);
+		return (-1);
 	if (len)
 	{
 		j = I;
 		p = buf + I;
 
-		check_chain(info, buf, &j, I, len);
+		checkforchain(info, buf, &j, I, len);
 		while (j < len)
 		{
-			if (is_chain(info, buf, &j, I, len))
+			if (ischaining(info, buf, &j))
 				break;
 			j++;
 		}
@@ -84,11 +85,11 @@ ssize_t get_input(info_t *info)
 			I = len = 0;
 			info->type_cmd_buf = CMD_NORM;
 		}
-		*buf_ptr = p;
+		*buf_p = p;
 		return (_strlen(p));
 	}
-	*buf_ptr = buf;
-	return (read);
+	*buf_p = buf;
+	return (r);
 }
 
 /**
@@ -137,7 +138,7 @@ int _getline(info_t *info, char **ptr, size_t *length)
 
 	c = _strchr(buf + I, '\n');
 	k = c ? 1 + (unsigned int)(c - buf) : len - 1;
-	new_p = realloc(p, s, s ? s + k : k + 1);
+	new_p = _realloc(p, s, s ? s + k : k + 1);
 	if (!new_p)
 		return (p ? free(p), -1 : -1);
 	if (s)
