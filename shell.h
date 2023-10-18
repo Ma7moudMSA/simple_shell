@@ -173,5 +173,11 @@ int replaceAlias(info_t *info);
 int replacing_vars(info_t *info);
 int replacingStrings(char **o, char *n);
 
-#endif
+l_t *add_node(l_t **head, const char *str, int num);
+l_t *add_node_end(l_t **head, const shar *str, int num);
+size_t p_list_str(const l_t *head);
+int delete_node_i(l_t **head, unsigned int i);
+void free_list(l_t **head);
 
+
+#endif
