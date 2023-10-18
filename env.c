@@ -73,7 +73,7 @@ int _myunsetenv(info_t *info)
 }
 
 /**
- * populate_env_list - populate the environment linked list
+ * populate_env - populate the environment linked list
  * @info: structure containing information aboutargument
  *
  * Return: zero

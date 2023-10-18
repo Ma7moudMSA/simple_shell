@@ -49,6 +49,7 @@ void set_info(info_t *info, char **av)
 /**
  * free_info - free all infor pointer
  * @info: the information pointer to clear
+ * @all: check it out
  *
  * Return: void
  */

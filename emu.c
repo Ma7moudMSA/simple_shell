@@ -2,7 +2,7 @@
 
 /**
  * _myex - exit shell
- * @inf: the strduct
+ * @info: the strduct
  *
  * Return: status
  */
