@@ -5,7 +5,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdbool.h>
-
 #include <string.h>
 #include <sys/types.h>
 #include <sys/wait.h>
@@ -115,8 +114,19 @@ char **strtow2(char *d, char *str);
 /**********************************************/
 void clear_info(info_t *info);
 void set_info(info_t *info, char **av);
-void free_info(info_t *info);
+void free_info(info_t *info, int all);
 
+/***********************************************/
+/*                      env                   */
+/**********************************************/
+int _setenv(info_t *info, char *var, char *value);
+int _unsetenv(info_t *info, char *var);
+char **get_environ(info_t *info);
+int populate_env(info_t *info);
+int _myunsetenv(info_t *info);
+int _mysetenv(info_t *info);
+char *_getenv(info_t *info, const char *name);
+int _myenv(info_t *info);
 
 
 /***************Memory**************/
