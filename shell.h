@@ -30,8 +30,9 @@
 #define CMD_OR 1
 #define CMD_AND 2
 #define CMD_CHAIN 3
+#define INFO_INT 0
 
-#define INFO_INT NULL,0
+#define INFO_INT 0
 extern char **environ;
 
 /**
@@ -177,8 +178,8 @@ void ffree(char **strofstr);
 void *_realloc(void *, unsigned int, unsigned int);
 
 /**************atoi_isdelim_interactive_*******/
-int interactive(info_t *);
-int is_delim(char, char *);
+int interact(info_t *);
+int isdelim(char, char *);
 int _isalpha(int);
 int _atoi(char *);
 
