@@ -44,7 +44,7 @@ int _mysetenv(info_t *info)
 {
 	if (info->argc != 3)
 	{
-		_errorputs("incorrect number of arguments\n");
+		_errorputs("Incorrect number of arguments\n");
 		return (1);
 	}
 	if (_setenv(info, info->argv[1], info->argv[2]))
@@ -67,7 +67,7 @@ int _myunsetenv(info_t *info)
 		_errorputs("Too few arguments.\n");
 		return (1);
 	}
-	for (i = 1; i < info->argc; i++)
+	for (i = 1; i <= info->argc; i++)
 		_unsetenv(info, info->argv[i]);
 	return (0);
 }
