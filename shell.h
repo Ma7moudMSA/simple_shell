@@ -46,7 +46,7 @@ typedef struct lstr
 * @ptr_buf_cmd: pointer of buf cmd of chain
 * @readfd:  fd to read line input
 * @type_cmd_buf: || && ;
-* @count_hist: number count
+* @histcount: number count
 */
 
 typedef struct passinfo
@@ -69,7 +69,7 @@ typedef struct passinfo
 	char **ptr_buf_cmd;
 	int type_cmd_buf;
 	int readfd;
-	int count_hist;
+	int histcount;
 } info_t;
 
 
@@ -80,6 +80,10 @@ typedef struct passinfo
 #define BUF_FLUSH -1
 #define INPUT_BUF_SIZE 1024
 
+#define HIST_FILE  ".simple_shell_history"
+#define HIST_MAX 4096
+
+extern char **environ;
 /**********************************************/
 /**               string functions.c        */
 /*********************************************/
@@ -128,6 +132,14 @@ int _mysetenv(info_t *info);
 char *_getenv(info_t *info, const char *name);
 int _myenv(info_t *info);
 
+/***********************************************/
+/*                      file_io_functions      */
+/**********************************************/
+char *get_history_file(info_t *info);
+int write_history_file(info_t *info);
+int read_history_file(info_t *info);
+int build_history_list(info_t *info, char *buf, int linecount);
+int renumber_history(info_t *info);
 
 /***************Memory**************/
 char *_memset(char*, char, unsigned int);
