@@ -15,7 +15,7 @@ int interact(info_t *inf)
 
 /**
 * isdelim - fn for delimiter
-* @char: delimited char
+* @chara: delimited char
 * @del: string
 *
 * Return: true and false
@@ -32,7 +32,7 @@ int isdelim(char chara, char *del)
 
 /**
 * _isalpha - fn to check digits or char
-* @char: input
+* @chara: input
 *
 * Return: either true or false
 */
@@ -85,11 +85,11 @@ int _erroratoi(char *s)
 
 void p_error(info_t *information, char *error_string)
 {
-	_puts(information->fname);
-	_puts(": ");
-	_puts(information->count_line, STDERR_FILENO);
-	_puts(": ");
-	_puts(information->argv[0]);
-	_puts(": ");
-	_puts(error_string);
+	_errorputs(information->fname);
+	_errorputs(": ");
+	print_decimal(information->count_line, STDERR_FILENO);
+	_errorputs(": ");
+	_errorputs(information->argv[0]);
+	_errorputs(": ");
+	_errorputs(error_string);
 }

@@ -13,6 +13,26 @@
 #include <fcntl.h>
 #include <errno.h>
 
+#define OUTPUT_BUF_SIZE 1024
+
+#define INPUT_BUF_SIZE 1024
+
+#define HIST_FILE ".simple_shell_history"
+#define HIST_MAX 4096
+#define USE_GILINE 0
+#define USE_STRTOK 0
+
+#define READ_BUF_SIZE 1024
+#define WRITE_BUF_SIZE 1024
+#define BUF_FLUSH -1
+
+#define CMD_NORM 0
+#define CMD_OR 1
+#define CMD_AND 2
+#define CMD_CHAIN 3
+
+extern char **environ;
+
 /**
 * struct lstr - struct namee
 * @num: field number
@@ -73,15 +93,7 @@ typedef struct passinfo
 } info_t;
 
 
-/***********************************************/
-/*                      hashtags          */
-/**********************************************/
-#define OUTPUT_BUF_SIZE 1024
-#define BUF_FLUSH -1
-#define INPUT_BUF_SIZE 1024
 
-#define HIST_FILE  ".simple_shell_history"
-#define HIST_MAX 4096
 
 #define READ_BUF_SIZE 1024
 #define WRITE_BUF_SIZE 1024
@@ -200,6 +212,19 @@ void _errorputchar(char c);
 int _putfd(char c, int fd);
 int _putsfd(char *str, int fd);
 
+
+ssize_t input_buf(info_t *info, char **buf, size_t *len);
+void siginthandler(__attribute__((unsused)) int sig_num);
+ssize_t get_input(info_t *info);
+ssize_t read_buf(info_t *info, char *buf, size_t *I);
+int _getline(info_t *info, char **ptr, size_t *length);
+
+
+void p_error(info_t *information, char *error_string);
+int _erroratoi(char *s);
+int print_decimal(int value, int file);
+char *conv_num(long int num, int base, int flags);
+void rmv_comments(char *buf);
 
 
 

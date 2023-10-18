@@ -80,8 +80,7 @@ char *conv_num(long int num, int base, int flags)
 	ptr = &buf[255];
 	*ptr = '\0';
 
-	do
-	{
+	do {
 		*--ptr = array[numb % base];
 		numb /= base;
 	} while (n != 0);
@@ -101,7 +100,35 @@ char *conv_num(long int num, int base, int flags)
 
 int print_decimal(int value, int file)
 {
-	int(*__putchar)
+	int (*__putchar)(char)  = _putchar;
+
+	int i, count = 0;
+
+	unsigned int absl, c;
+
+	if (fd == STDERR_FILENO)
+		__putchar == _errorputchar;
+	if (value < 0)
+	{
+		absl = -value;
+		__putchar('-');
+		count++;
+	}
+	else
+		absl = input;
+	c = absl;
+	for (i = 1000000000; i > 1; i /= 10)
+	{
+		if (absl / i)
+		{
+			__putchar('0' + c / i);
+			count++;
+		}
+		c %= i;
+	}
+
+	__putchar('0' + current);
+	count++;
+
+	return (count);
 }
-// to contune this function and the conv_num fun to change
-// _puts to eput
