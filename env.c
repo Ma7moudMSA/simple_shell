@@ -8,7 +8,7 @@
  */
 int _myenv(info_t *info)
 {
-	print_list_str(info);
+	p_list_str(info);
 	return (0);
 }
 
@@ -29,7 +29,7 @@ char *_getenv(info_t *info, const char *name)
 		ptr = starts_with(node->str, name);
 		if (ptr && *ptr)
 			return (ptr);
-		ndoe = node->next;
+		node = node->next;
 	}
 	return (NULL);
 }
@@ -64,7 +64,7 @@ int _myunsetenv(info_t *info)
 
 	if (info->argc == 1)
 	{
-		_eputs("Too few arguments.\n");
+		_errorputs("Too few arguments.\n");
 		return (1);
 	}
 	for (i = 1; i < info->argc; i++)
