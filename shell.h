@@ -152,4 +152,45 @@ int is_delim(char, char *);
 int _isalpha(int);
 int _atoi(char *);
 
+int _help(info_t *info);
+int _mycurrentdir(info_t *info);
+int _myex(info_t *info);
+
+
+int _myhist(info_t *inf);
+int unsetalias(info_t *info, char *str);
+int s_alias(info_t *info, char *str);
+int p_alias(l_t *node);
+int _myalias(info_t *info);
+
+char *find_path(info_t *, char *, char *);
+char *duplicatechars(char *, int , int );
+int iscmd(info_t *, char *);
+
+int ischaining(info_t *, char *, size_t *);
+void checkforchain(info_t *info, char *, size_t , size_t , size_t );
+int replaceAlias(info_t *info);
+int replacing_vars(info_t *info);
+int replacingStrings(char **o, char *n);
+
+l_t *add_node(l_t **head, const char *str, int num);
+l_t *add_node_end(l_t **head, const shar *str, int num);
+size_t p_list_str(const l_t *head);
+int delete_node_i(l_t **head, unsigned int i);
+void free_list(l_t **head);
+
+size_t list_length(const l_t *head);
+char **list_string(l_t *head);
+size_t p_list(const l_t *head);
+l_t *node_starts_with(l_t *node, char *prefix, char c);
+ssize_t get_node_i(l_t *head, l_t *node);
+
+void _errorputs(char *str);
+void _errorputchar(char c);
+int _putfd(char c, int fd);
+int _putsfd(char *str, int fd);
+
+
+
+
 #endif
