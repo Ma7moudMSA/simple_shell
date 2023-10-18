@@ -152,4 +152,26 @@ int is_delim(char, char *);
 int _isalpha(int);
 int _atoi(char *);
 
+int _help(info_t *info);
+int _mycurrentdir(info_t *info);
+int _myex(info_t *info);
+
+
+int _myhist(info_t *inf);
+int unsetalias(info_t *info, char *str);
+int s_alias(info_t *info, char *str);
+int p_alias(l_t *node);
+int _myalias(info_t *info);
+
+char *find_path(info_t *, char *, char *);
+char *duplicatechars(char *, int , int );
+int iscmd(info_t *, char *);
+
+int ischaining(info_t *, char *, size_t *);
+void checkforchain(info_t *info, char *, size_t , size_t , size_t );
+int replaceAlias(info_t *info);
+int replacing_vars(info_t *info);
+int replacingStrings(char **o, char *n);
+
 #endif
+
