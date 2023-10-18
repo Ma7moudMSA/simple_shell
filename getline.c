@@ -6,7 +6,7 @@
  *
  * Return: void
  */
-void siginthandler(__attribute__((unused)) int sig_num) 
+void siginthandler(__attribute__((unused)) int sig_num)
 {
 	_puts("\n");
 	_puts("$ ");

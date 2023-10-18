@@ -152,5 +152,5 @@ int replacing_vars(info_t *info)
 void replacingStrings(char **o, char *n)
 {
 	free(*o);
-	*o = n;	
+	*o = n;
 }
