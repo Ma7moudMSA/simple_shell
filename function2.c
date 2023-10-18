@@ -12,15 +12,15 @@ int _atoi(char *b)
 	int i, s = 1, f = 0, o;
 	unsigned int r = 0;
 
-	for (i = 0; s[i] != '\0' && f != 2; i++)
+	for (i = 0; b[i] != '\0' && f != 2; i++)
 	{
-		if (s[i] == '-')
+		if (b[i] == '-')
 			s *= -1;
-		if (s[i] >= '0' && s[i] <= '9')
+		if (b[i] >= '0' && b[i] <= '9')
 		{
 			f = 1;
 			r *= 10;
-			r += (s[i] - '0');
+			r += (b[i] - '0');
 		}
 		else if (f == 1)
 			f = 2;
@@ -81,9 +81,9 @@ char *conv_num(long int num, int base, int flags)
 	*ptr = '\0';
 
 	do {
-		*--ptr = array[numb % base];
+		*--ptr = arr[numb % base];
 		numb /= base;
-	} while (n != 0);
+	} while (numb != 0);
 
 	if (s)
 		*--ptr = s;
@@ -106,7 +106,7 @@ int print_decimal(int value, int file)
 
 	unsigned int absl, c;
 
-	if (fd == STDERR_FILENO)
+	if (file == STDERR_FILENO)
 		__putchar == _errorputchar;
 	if (value < 0)
 	{
@@ -115,7 +115,7 @@ int print_decimal(int value, int file)
 		count++;
 	}
 	else
-		absl = input;
+		absl = value;
 	c = absl;
 	for (i = 1000000000; i > 1; i /= 10)
 	{
@@ -127,7 +127,7 @@ int print_decimal(int value, int file)
 		c %= i;
 	}
 
-	__putchar('0' + current);
+	__putchar('0' + c);
 	count++;
 
 	return (count);

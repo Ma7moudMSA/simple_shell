@@ -8,7 +8,7 @@
 * Return: ua wad
 */
 
-int iscmd(info_t *info, char *path);
+int iscmd(info_t *info, char *path)
 {
 	struct stat st;
 
@@ -33,12 +33,12 @@ int iscmd(info_t *info, char *path);
 
 char *duplicatechars(char *pathstring, int s, int st)
 {
-	static char buffer[1024]
+	static char buffer[1024];
 	int i = 0, kilo = 0;
 
 	for (kilo = 0, i = s; i < st; i++)
 		if (pathstring[i] != ':')
-			buffer[++] = pathstring[i];
+			buffer[kilo++] = pathstring[i];
 	buffer[kilo] = 0;
 	return (buffer);
 

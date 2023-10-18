@@ -16,7 +16,7 @@ void _errorputs(char *str)
 	while (str[i] != '\0')
 	{
 		_errorputchar(str[i]);
-		i++
+		i++;
 	}
 }
 
@@ -28,7 +28,7 @@ void _errorputs(char *str)
 * Return: numver
 */
 
-void _errorputchar(char c)
+int _errorputchar(char c)
 {
 	static int i;
 	static char buffer[1024];
