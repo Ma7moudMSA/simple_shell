@@ -31,6 +31,7 @@
 #define CMD_AND 2
 #define CMD_CHAIN 3
 
+#define INFO_INT NULL,0
 extern char **environ;
 
 /**
