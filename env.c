@@ -8,7 +8,7 @@
  */
 int _myenv(info_t *info)
 {
-	p_list_str(info);
+	p_list_str(info->env);
 	return (0);
 }
 
@@ -44,7 +44,7 @@ int _mysetenv(info_t *info)
 {
 	if (info->argc != 3)
 	{
-		_eputs("incorrect number of arguments\n");
+		_errorputs("incorrect number of arguments\n");
 		return (1);
 	}
 	if (_setenv(info, info->argv[1], info->argv[2]))
