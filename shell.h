@@ -46,7 +46,7 @@ typedef struct lstr
 	int num;
 	char *str;
 	struct lstr *next;
-} l_t;
+} l_t,list_t;
 
 /**
 * struct passinfo - arguments to be passed
@@ -191,10 +191,10 @@ char *duplicatechars(char *, int , int );
 int iscmd(info_t *, char *);
 
 int ischaining(info_t *, char *, size_t *);
-void checkforchain(info_t *info, char *, size_t , size_t , size_t );
+void checkforchain(info_t *info, char *, size_t *, size_t , size_t );
 int replaceAlias(info_t *info);
 int replacing_vars(info_t *info);
-int replacingStrings(char **o, char *n);
+void replacingStrings(char **o, char *n);
 
 l_t *add_node(l_t **head, const char *str, int num);
 l_t *add_node_end(l_t **head, const char *str, int num);

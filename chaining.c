@@ -93,7 +93,7 @@ int replaceAlias(info_t *info)
 		ptr = _strchr(node->str, '=');
 		if (!ptr)
 			return (0);
-		ptr = _strdup(p + 1);
+		ptr = _strdup(ptr + 1);
 		if (ptr)
 			return (0);
 		info->argv[0] = ptr;
@@ -111,7 +111,7 @@ int replaceAlias(info_t *info)
 int replacing_vars(info_t *info)
 {
 	int i = 0;
-	l_t *n;
+	l_t *node;
 
 	for (i = 0; info->argv[i]; i++)
 	{
@@ -119,17 +119,17 @@ int replacing_vars(info_t *info)
 			continue;
 		if (!_strcmp(info->argv[i], "$?"))
 		{
-			replacingStrings($(info->argv[i]),
+			replacingStrings(&(info->argv[i]),
 				_strdup(conv_num(info->status, 10, 0)));
 				continue;
 		}
 		if (!_strcmp(info->argv[i], "$$"))
 		{
-			replacingStrings($(info->argv[i]),
+			replacingStrings(&(info->argv[i]),
 				_strdup(conv_num(getpid(), 10, 0)));
 			continue;
 		}
-		node = node_starts_with(info->env, &info->[i][1], '=');
+		node = node_starts_with(info->env, &info->argv[i][1], '=');
 		if (node)
 		{
 			replacingStrings(&(info->argv[i]),
@@ -149,9 +149,8 @@ int replacing_vars(info_t *info)
  * Return: always zero
  */
 
-int replacingStrings(char **o, char *n)
+void replacingStrings(char **o, char *n)
 {
 	free(*o);
-	*o = n;
-	return (1);
+	*o = n;	
 }
