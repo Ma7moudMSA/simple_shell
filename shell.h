@@ -13,7 +13,6 @@
 #include <fcntl.h>
 #include <errno.h>
 
-
 #define OUTPUT_BUF_SIZE 1024
 
 #define INPUT_BUF_SIZE 1024
@@ -35,40 +34,40 @@
 extern char **environ;
 
 /**
-* struct lstr - struct namee
-* @num: field number
-* @str: string
-* @next: linked list
-*/
+ * struct lstr - struct namee
+ * @num: field number
+ * @str: string
+ * @next: linked list
+ */
 
 typedef struct lstr
 {
 	int num;
 	char *str;
 	struct lstr *next;
-} l_t,list_t;
+} l_t, list_t;
 
 /**
-* struct passinfo - arguments to be passed
-* @arg: string arg
-* @argv: array of strings
-* @path: path of string command
-* @argc: counter
-* @count_line: errors
-* @err: error for exit
-* @count_line_flag: if input count
-* @fname: program file name
-* @env: linked list copy of environ
-* @environ: modified copy of environ
-* @his: node of history
-* @alias: node of alias
-* @enviroment_change: on of change in environ
-* @status: status of exec command
-* @ptr_buf_cmd: pointer of buf cmd of chain
-* @readfd:  fd to read line input
-* @type_cmd_buf: || && ;
-* @histcount: number count
-*/
+ * struct passinfo - arguments to be passed
+ * @arg: string arg
+ * @argv: array of strings
+ * @path: path of string command
+ * @argc: counter
+ * @count_line: errors
+ * @err: error for exit
+ * @count_line_flag: if input count
+ * @fname: program file name
+ * @env: linked list copy of environ
+ * @environ: modified copy of environ
+ * @his: node of history
+ * @alias: node of alias
+ * @enviroment_change: on of change in environ
+ * @status: status of exec command
+ * @ptr_buf_cmd: pointer of buf cmd of chain
+ * @readfd:  fd to read line input
+ * @type_cmd_buf: || && ;
+ * @histcount: number count
+ */
 
 typedef struct passinfo
 {
@@ -93,8 +92,16 @@ typedef struct passinfo
 	int histcount;
 } info_t;
 
-
-
+/**
+ * struct builtin_table - struct namee
+ * @type: string
+ * @func: function
+ */
+typedef struct builtin_table
+{
+	char *type;
+	int (*func)(info_t *);
+}builtin_table;
 
 #define READ_BUF_SIZE 1024
 #define WRITE_BUF_SIZE 1024
@@ -105,15 +112,14 @@ typedef struct passinfo
 #define CMD_AND 2
 #define CMD_CHAIN 3
 
-
 extern char **environ;
 /**********************************************/
 /**               string functions.c        */
 /*********************************************/
 int _strlen(const char *str);
-int _strcmp(const char*, const char *);
+int _strcmp(const char *, const char *);
 char *starts_with(const char *, const char *);
-char *_strcat(char*, char*);
+char *_strcat(char *, char *);
 
 /**********************************************/
 /**               string functions2.c        */
@@ -165,7 +171,7 @@ int build_history_list(info_t *info, char *buf, int linecount);
 int renumber_history(info_t *info);
 
 /***************Memory**************/
-char *_memset(char*, char, unsigned int);
+char *_memset(char *, char, unsigned int);
 void ffree(char **strofstr);
 void *_realloc(void *, unsigned int, unsigned int);
 
@@ -179,7 +185,6 @@ int _help(info_t *info);
 int _mycurrentdir(info_t *info);
 int _myex(info_t *info);
 
-
 int _myhist(info_t *inf);
 int unsetalias(info_t *info, char *str);
 int s_alias(info_t *info, char *str);
@@ -187,11 +192,11 @@ int p_alias(l_t *node);
 int _myalias(info_t *info);
 
 char *find_path(info_t *, char *, char *);
-char *duplicatechars(char *, int , int );
+char *duplicatechars(char *, int, int);
 int iscmd(info_t *, char *);
 
 int ischaining(info_t *, char *, size_t *);
-void checkforchain(info_t *info, char *, size_t *, size_t , size_t );
+void checkforchain(info_t *info, char *, size_t *, size_t, size_t);
 int replaceAlias(info_t *info);
 int replacing_vars(info_t *info);
 void replacingStrings(char **o, char *n);
@@ -213,13 +218,11 @@ int _errorputchar(char c);
 int _putfd(char c, int fd);
 int _putsfd(char *str, int fd);
 
-
 ssize_t input_buf(info_t *info, char **buf, size_t *len);
 void siginthandler(__attribute__((unused)) int sig_num);
 ssize_t get_input(info_t *info);
 ssize_t read_buf(info_t *info, char *buf, size_t *I);
 int _getline(info_t *info, char **ptr, size_t *length);
-
 
 void p_error(info_t *information, char *error_string);
 int _erroratoi(char *s);
@@ -232,7 +235,5 @@ void find_cmd(info_t *info);
 int find_builtin(info_t *info);
 void find_cmd(info_t *info);
 void fork_cmd(info_t *info);
-
-
 
 #endif

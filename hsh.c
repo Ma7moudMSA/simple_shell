@@ -22,11 +22,11 @@ int hsh(info_t *info, char **av)
         if (r != -1)
         {
             set_info(info, av);
-            builtin_ret = find_builtin_(info);
+            builtin_ret = find_builtin(info);
             if (builtin_ret == -1)
                 find_cmd(info);
         }
-        else if (interactive_ret(info))
+        else if (interactive(info))
             _putchar('\n');
         free_info(info, 0);
     }
@@ -51,7 +51,7 @@ int hsh(info_t *info, char **av)
  */
 int find_builtin(info_t *info)
 {
-    int I built_in_ret = -1;
+    int I, built_in_ret = -1;
     builtin_table builtintbl[] = {
         {"exit", _myex},
         {"env", _myenv},
@@ -60,13 +60,13 @@ int find_builtin(info_t *info)
         {"setenv", _mysetenv},
         {"unsetenv", _myunsetenv},
         {"cd", _mycurrentdir},
-         {"alias", _myalias},
+        {"alias", _myalias},
         {NULL, NULL}};
     for (I = 0; builtintbl[I].type; I++)
-        if (_strcmp(info->argv[0], builtinbl[I].type) == 0)
+        if (_strcmp(info->argv[0], builtintbl[I].type) == 0)
         {
             info->count_line++;
-            built_in_ret = builtintbl[i].func(info);
+            built_in_ret = builtintbl[I].func(info);
             break;
         }
     return (built_in_ret);
@@ -90,7 +90,7 @@ void find_cmd(info_t *info)
         info->count_line_flag = 0;
     }
     for (I = 0, k = 0; info->arg[I]; I++)
-        if (!is_delimiter(info->arg[I], "\t\n"))
+        if (!is_delim(info->arg[I], "\t\n"))
             k++;
     if (!k)
         return;
@@ -98,11 +98,11 @@ void find_cmd(info_t *info)
     if (path)
     {
         info->path = path;
-        forkcmd(info);
+        fork_cmd(info);
     }
     else
     {
-        if ((interactive(info) || _getenv(info, "PATH=") || info->argv[0][0] == '/') && iscmd(info->argv[0]))
+        if ((interactive(info) || _getenv(info, "PATH=") || info->argv[0][0] == '/') && iscmd(info, info->argv[0]))
             fork_cmd(info);
         else if (*(info->arg) != '\n')
         {
@@ -130,22 +130,22 @@ void fork_cmd(info_t *info)
     }
     if (child_pid == 0)
     {
-    if (execve(info->path, info->argv, get_environment(info) == -1)
-    {
+        if (execve(info->path, info->argv, get_environ(info)) == -1)
+        {
             free_info(info, 1);
             if (errno == EACCES)
                 exit(126);
             exit(1);
-    }
+        }
     }
     else
     {
-    wait(&(info->status));
-    if (WIFEXITED(info->status))
-    {
-        info->status = WEXITSTATUS(info->status);
-        if (info->status == 126)
-            p_error(info, "Permission denied")
-    }
+        wait(&(info->status));
+        if (WIFEXITED(info->status))
+        {
+            info->status = WEXITSTATUS(info->status);
+            if (info->status == 126)
+                p_error(info, "Permission denied");
+        }
     }
 }
