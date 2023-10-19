@@ -56,7 +56,7 @@ void find_cmd(info_t *info)
 		info->count_line_flag = 0;
 	}
 	for (I = 0, k = 0; info->arg[I]; I++)
-		if (!isdelim(info->arg[I], "\t\n"))
+		if (!isdelim(info->arg[I], " \t\n"))
 			k++;
 	if (!k)
 		return;
@@ -68,8 +68,8 @@ void find_cmd(info_t *info)
 	}
 	else
 	{
-		if ((interact(info) || _getenv(info, "PATH=") ||
-			info->argv[0][0] == '/') && iscmd(info, info->argv[0]))
+		if ((interact(info) || _getenv(info, "PATH=")
+			|| info->argv[0][0] == '/') && iscmd(info, info->argv[0]))
 			fork_cmd(info);
 		else if (*(info->arg) != '\n')
 		{
