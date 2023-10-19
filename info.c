@@ -28,7 +28,7 @@ void set_info(info_t *info, char **av)
 	if (info->arg)
 	{
 		info->argv = strtow(info->arg, " \t");
-		if (!info->arg)
+		if (info->arg)
 		{
 			info->argv = malloc(sizeof(char *) * 2);
 			if (info->argv)
@@ -68,13 +68,11 @@ void free_info(info_t *info, int all)
 			free_list(&(info->his));
 		if (info->alias)
 			free_list(&(info->alias));
-		if (!info->his)
-			free_list(&(info->his));
 		ffree(info->environ);
-		info->environ = NULL;
-		ffree((char **)info->ptr_buf_cmd);
+			info->environ = NULL;
+		bfree((void **)info->ptr_buf_cmd);
 		if (info->readfd > 2)
 			close(info->readfd);
-		_putchar(BUF_FLUSH);
+		_putchar(-1);
 	}
 }
