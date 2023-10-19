@@ -46,7 +46,7 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 			info->count_line_flag = 1;
 			rmv_comments(*buf);
 			build_history_list(info, *buf, info->histcount++);
-			
+
 			{
 				*len = read;
 				info->ptr_buf_cmd = buf;
@@ -64,7 +64,7 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 */
 ssize_t get_input(info_t *info)
 {
-	static char *buf; 
+	static char *buf;
 	static size_t I, j, len;
 	ssize_t r = 0;
 	char **buf_p = &(info->arg), *p;
@@ -86,7 +86,7 @@ ssize_t get_input(info_t *info)
 			j++;
 		}
 		I = j + 1;
-		if (I >= len)
+		if (len <= I)
 		{
 			I = len = 0;
 			info->type_cmd_buf = 0;
