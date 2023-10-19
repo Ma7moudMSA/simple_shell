@@ -205,7 +205,7 @@ int ischaining(info_t *, char *, size_t *);
 void checkforchain(info_t *info, char *, size_t *, size_t, size_t);
 int replaceAlias(info_t *info);
 int replacing_vars(info_t *info);
-void replacingStrings(char **o, char *n);
+int replacingStrings(char **o, char *n);
 
 l_t *add_node(l_t **head, const char *str, int num);
 l_t *add_node_end(l_t **head, const char *str, int num);

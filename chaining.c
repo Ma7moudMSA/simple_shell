@@ -62,7 +62,7 @@ void checkforchain(info_t *info, char *buffer, size_t *ptr, size_t i, size_t l)
 	}
 	if (info->type_cmd_buf == 1)
 	{
-		if (!!info->status)
+		if (!info->status)
 		{
 			buffer[i] = 0;
 			k = l;
@@ -94,7 +94,7 @@ int replaceAlias(info_t *info)
 		if (!ptr)
 			return (0);
 		ptr = _strdup(ptr + 1);
-		if (ptr)
+		if (!ptr)
 			return (0);
 		info->argv[0] = ptr;
 	}
@@ -149,8 +149,9 @@ int replacing_vars(info_t *info)
  * Return: always zero
  */
 
-void replacingStrings(char **o, char *n)
+int replacingStrings(char **o, char *n)
 {
 	free(*o);
 	*o = n;
+	return (1);
 }
