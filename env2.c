@@ -63,7 +63,7 @@ int _setenv(info_t *info, char *var, char *value)
 	l_t *node;
 	char *p;
 
-	if (!var || !var)
+	if (!var || !value)
 		return (0);
 	buf = malloc(_strlen(var) + _strlen(value) + 2);
 	if (!buf)
