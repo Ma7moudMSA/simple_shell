@@ -8,7 +8,7 @@
  *
  * Return: the concatenated string
  */
-char *_strncpy(char *destination, const char *source, int copy_numbers)
+char *_strncpy(char *destination, char *source, int copy_numbers)
 {
 	int I, j;
 	char *s = destination;
@@ -20,8 +20,7 @@ char *_strncpy(char *destination, const char *source, int copy_numbers)
 		I++;
 	}
 	if (copy_numbers > I)
-	{ /*enters another loop that fills the rest of the destination string */
-		/*with null characters up to copy_numbers*/
+	{
 		j = I;
 		while (j < copy_numbers)
 			destination[j++] = '\0';
@@ -44,11 +43,13 @@ char *_strncat(char *destination, char *source, int copy_numbers)
 
 	I = j = 0;
 	while (destination[I++] != '\0')
-	{}
+	;
 
 	while (j < copy_numbers && source[j] != '\0')
 	{
-		destination[I++] = source[j++];
+		destination[I] = source[j];
+		I++;
+		j++;
 	}
 	if (j < copy_numbers)
 		destination[I] = '\0';

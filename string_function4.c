@@ -8,7 +8,7 @@
  *
  * Return: a pointer to an array of strings or NULL
  */
-char **strtow(char *d, char *str)
+char **strtow(char *str, char *d)
 {
 	int i, j, k, m, n = 0;
 	char **s;
@@ -43,6 +43,7 @@ char **strtow(char *d, char *str)
 		}
 		for (m = 0; m < k; m++)
 			s[j][m] = str[i++];
+		s[j][m] = 0;
 	}
 	s[j] = NULL;
 	return (s);
@@ -56,7 +57,7 @@ char **strtow(char *d, char *str)
  *
  * Return: a pointer to an array of strings or NULL
  */
-char **strtow2(char *d, char *str)
+char **strtow2(char *str, char d)
 {
 	int i, j, k, m, n = 0;
 	char **s;
@@ -64,7 +65,8 @@ char **strtow2(char *d, char *str)
 	if (str == NULL || str[0] == 0)
 		return (NULL);
 	for (i = 0; str[i] != '\0'; i++)
-		if (!isdelim(str[i], d) && (isdelim(str[i + 1], d) || !str[i + 1]))
+		if ((str[i] != d && str[i + 1] == d) ||
+			(str[i] != d && !str[i + 1]) || str[i + 1] == d)
 			n++;
 
 	if (n == 0)
@@ -74,10 +76,10 @@ char **strtow2(char *d, char *str)
 		return (NULL);
 	for (i = 0, j = 0; j < n; j++)
 	{
-		while (isdelim(str[i], d))
+		while (str[i] == d && str[i] != d)
 			i++;
 		k = 0;
-		while (!isdelim(str[i + k], d) && str[i + k])
+		while (str[i + k] != d && str[i + k] && str[i + k] != d)
 			k++;
 		s[j] = malloc((k + 1) * sizeof(char));
 		if (!s[j])
@@ -89,6 +91,7 @@ char **strtow2(char *d, char *str)
 		}
 		for (m = 0; m < k; m++)
 			s[j][m] = str[i++];
+		s[j][m] = 0;
 	}
 	s[j] = NULL;
 	return (s);

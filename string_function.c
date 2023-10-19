@@ -28,7 +28,7 @@ int _strlen(char *Copy_string)
  * Return: negative if string1 is less than string2
  * and positive if string1 is greater
  */
-int _strcmp( char *string1, char *string2)
+int _strcmp(char *string1, char *string2)
 {
 	while (*string1 && *string2)
 	{
