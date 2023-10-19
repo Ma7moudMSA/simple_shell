@@ -33,7 +33,7 @@ int write_history_file(info_t *info)
 {
 	ssize_t fd;
 	char *filename = get_history_file(info);
-	list_t *node = NULL;
+	l_t *node = NULL;
 
 	if (!filename)
 		return (-1);
@@ -108,7 +108,7 @@ int read_history_file(info_t *info)
  */
 int build_history_list(info_t *info, char *buf, int linecount)
 {
-	list_t *node = NULL;
+	l_t *node = NULL;
 
 	if (info->his)
 		node = info->his;
@@ -127,7 +127,7 @@ int build_history_list(info_t *info, char *buf, int linecount)
  */
 int renumber_history(info_t *info)
 {
-	list_t *node = info->his;
+	l_t *node = info->his;
 	int i = 0;
 
 	while (node)
