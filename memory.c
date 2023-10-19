@@ -33,3 +33,21 @@ void ffree(char **strofstr)
 		free(*strofstr++);
 	free(text);
 }
+
+/**
+* bfree - fn name
+* @p: bs ba2a
+*
+* Return: we malo
+*/
+
+int bfree(void **p)
+{
+	if (p && *p)
+	{
+		free(*p);
+		*p = NULL;
+		return (1);
+	}
+	return (0);
+}

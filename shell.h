@@ -181,6 +181,8 @@ int renumber_history(info_t *info);
 char *_memset(char *, char, unsigned int);
 void ffree(char **strofstr);
 void *_realloc(void *, unsigned int, unsigned int);
+int bfree(void **p);
+
 
 /**************atoi_isdelim_interactive_*******/
 int interact(info_t *);
