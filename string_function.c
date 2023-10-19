@@ -6,7 +6,7 @@
  *
  * Return: intger length of the string
  */
-int _strlen(const char *Copy_string)
+int _strlen(char *Copy_string)
 {
 	int Local_i = 0;
 
@@ -28,7 +28,7 @@ int _strlen(const char *Copy_string)
  * Return: negative if string1 is less than string2
  * and positive if string1 is greater
  */
-int _strcmp(const char *string1, const char *string2)
+int _strcmp( char *string1, char *string2)
 {
 	while (*string1 && *string2)
 	{

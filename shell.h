@@ -123,8 +123,8 @@ extern char **environ;
 /**********************************************/
 /**               string functions.c        */
 /*********************************************/
-int _strlen(const char *str);
-int _strcmp(const char *, const char *);
+int _strlen(char *);
+int _strcmp(char *, char *);
 char *starts_with(const char *, const char *);
 char *_strcat(char *, char *);
 
@@ -139,15 +139,15 @@ int _putchar(char);
 /**********************************************/
 /**               string functions3.c        */
 /*********************************************/
-char *_strncpy(char *destination, const char *source, int copy_numbers);
-char *_strncat(char *destination, char *source, int copy_numbers);
-char *_strchr(char *source, char c);
+char *_strncpy(char *, char *, int);
+char *_strncat(char *, char *, int);
+char *_strchr(char *, char);
 
 /**********************************************/
 /**               string functions4.c        */
 /*********************************************/
-char **strtow(char *d, char *str);
-char **strtow2(char *d, char *str);
+char **strtow(char *, char *);
+char **strtow2(char *, char);
 
 /***********************************************/
 /*                      info.c          */
