@@ -32,19 +32,25 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 		*buf = NULL;
 		signal(SIGINT, siginthandler);
 #if USE_GILINE
-		read = _getline(buf, &len_read, stdin);
+		read = getline(buf, &len_read, stdin);
 #else
 		read = _getline(info, buf, &len_read);
 #endif
 		if (read > 0)
 		{
-			if ((*buf)[(read) - 1] == '\n')
-				(*buf)[(read--) - 1] = '\0';
+			if ((*buf)[read - 1] == '\n')
+			{
+				(*buf)[read - 1] = '\0';
+				read--;
+			}
 			info->count_line_flag = 1;
 			rmv_comments(*buf);
 			build_history_list(info, *buf, info->histcount++);
-			*len = read;
-			info->ptr_buf_cmd = buf;
+			
+			{
+				*len = read;
+				info->ptr_buf_cmd = buf;
+			}
 		}
 	}
 	return (read);
@@ -58,7 +64,7 @@ ssize_t input_buf(info_t *info, char **buf, size_t *len)
 */
 ssize_t get_input(info_t *info)
 {
-	static char *buf; /* the  ';' command chain buffer*/
+	static char *buf; 
 	static size_t I, j, len;
 	ssize_t r = 0;
 	char **buf_p = &(info->arg), *p;
@@ -80,10 +86,10 @@ ssize_t get_input(info_t *info)
 			j++;
 		}
 		I = j + 1;
-		if (len <= I)
+		if (I >= len)
 		{
 			I = len = 0;
-			info->type_cmd_buf = CMD_NORM;
+			info->type_cmd_buf = 0;
 		}
 		*buf_p = p;
 		return (_strlen(p));
@@ -137,7 +143,7 @@ int _getline(info_t *info, char **ptr, size_t *length)
 		return (-1);
 
 	c = _strchr(buf + I, '\n');
-	k = c ? 1 + (unsigned int)(c - buf) : len - 1;
+	k = c ? 1 + (unsigned int)(c - buf) : len;
 	new_p = _realloc(p, s, s ? s + k : k + 1);
 	if (!new_p)
 		return (p ? free(p), -1 : -1);
