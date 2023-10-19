@@ -26,7 +26,7 @@ int unsetalias(info_t *info, char *str)
 	char *ptr, cha;
 	int r;
 
-	ptr = strchr(str, '=');
+	ptr = _strchr(str, '=');
 	if (!ptr)
 		return (1);
 	cha = *ptr;
@@ -53,7 +53,7 @@ int s_alias(info_t *info, char *str)
 
 	if (!p)
 		return (1);
-	if (!++p)
+	if (!*++p)
 		return (unsetalias(info, str));
 
 	unsetalias(info, str);
