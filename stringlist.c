@@ -116,7 +116,7 @@ int delete_node_i(l_t **head, unsigned int i)
 
 	if (!i)
 	{
-		node = (*head);
+		node = *head;
 		*head = (*head)->next;
 		free(node->str);
 		free(node);

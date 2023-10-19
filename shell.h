@@ -1,10 +1,10 @@
 #ifndef SHELL_H
 #define SHELL_H
-#include <stdarg.h>
+
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include <stdbool.h>
+
 #include <string.h>
 #include <sys/types.h>
 #include <sys/wait.h>
@@ -14,7 +14,6 @@
 #include <errno.h>
 
 #define OUTPUT_BUF_SIZE 1024
-
 #define INPUT_BUF_SIZE 1024
 
 #define HIST_FILE ".simple_shell_history"
@@ -30,7 +29,7 @@
 #define CMD_OR 1
 #define CMD_AND 2
 #define CMD_CHAIN 3
-#define INFO_INT 0
+
 
 extern char **environ;
 
@@ -46,7 +45,7 @@ typedef struct lstr
 	int num;
 	char *str;
 	struct lstr *next;
-} l_t, list_t;
+} l_t;
 
 /**
  * struct passinfo - arguments to be passed
@@ -93,11 +92,9 @@ typedef struct passinfo
 	int histcount;
 } info_t;
 
-#define INFO_INIT                                   \
-	{                                                                         \
-		NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL,\
-			0, 0, 0                                                            \
-	}
+#define INFO_INIT \
+	{NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
+			0, 0, 0}
 
 /**
  * struct builtin_table - struct namee
