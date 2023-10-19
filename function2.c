@@ -65,19 +65,19 @@ void rmv_comments(char *buf)
 char *conv_num(long int num, int base, int flags)
 {
 	static char *arr;
-	static char buf[256];
+	static char buf[50];
 	char s = 0;
 	char *ptr;
 	unsigned long numb = num;
 
-	if (!(flags & 1) && num < 0)
+	if (!(flags & 2) && num < 0)
 	{
 		numb = -num;
 		s = '-';
 	}
 
-	arr = flags & 2 ? "0123456789abcdef" : "0123456789ABCDEF";
-	ptr = &buf[255];
+	arr = flags & 1 ? "0123456789abcdef" : "0123456789ABCDEF";
+	ptr = &buf[49];
 	*ptr = '\0';
 
 	do {
