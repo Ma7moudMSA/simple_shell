@@ -1,8 +1,8 @@
 #include "main.h"
 
 /**
- * Execution_U32_Execute - Execute the given arguments
- * @Copy_PPU8_Command:Input command
+ * Execution_U32_Execute - Execute only  the given argument
+ * @Copy_PPU8_Command:Inputed command
  * Return: 0 if success
  */
 int Execution_U32_Execute(char **Copy_PPU8_Command)

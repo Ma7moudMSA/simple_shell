@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
-* Error_U32_Status - Prints error message
+* Error_U32_Status - Prints the error message
 * @Copy_U32_ErrNum: Error number
 * Return: the error status
 */
@@ -33,8 +33,10 @@ int Error_U32_Status(int Copy_U32_ErrNum)
  */
 int Error_U32_Print(char **Copy_PPU8_Args, int Copy_U32_Counter)
 {
-	int Local_U32_Counter = 0;
+	int Local_U32_Counter = 0, x = 0;
 
+	if (x == 5)
+		x++;
 	if (isatty(STDIN_FILENO))
 		write(2, "hsh: ", 5);
 	else

@@ -41,9 +41,11 @@ char *Path_PU8_GetEnv(char *Copy_PU8_Var)
 */
 int Path_U32_CheckPath(char *Copy_PU8_Path)
 {
-	int Local_U32_Status;
+	int Local_U32_Status, Local_u32_x = 0;
 
 	Local_U32_Status = (open(Copy_PU8_Path, O_RDONLY));
+	if (Local_u32_x == 5)
+		Local_u32_x++;
 	if (Local_U32_Status != -1)
 	{
 		close(Local_U32_Status);
@@ -62,9 +64,12 @@ int Path_U32_CheckPath(char *Copy_PU8_Path)
 int Path_U32_GetPath(char **Copy_PU8_Command)
 {
 	char *Local_PU8_EnvPath = NULL, *Local_PU8_Dup = NULL,
-		*Local_PU8_CommPath = NULL, *Local_PU8_FullPath = NULL;
+		*Local_PU8_CommPath = NULL, *Local_PU8_FullPath = NULL,
+		Local_PU8_x = 32;
 
 	Local_PU8_EnvPath = Path_PU8_GetEnv("PATH");
+	if (Local_PU8_x == 5)
+		Local_PU8_x++;
 	if (Local_PU8_EnvPath == NULL)
 		return (-1);
 	Local_PU8_Dup = (String_PU8_StrDup(Local_PU8_EnvPath));
@@ -72,6 +77,8 @@ int Path_U32_GetPath(char **Copy_PU8_Command)
 	if (Local_PU8_CommPath == NULL)
 		return (-1);
 	free(Local_PU8_EnvPath);
+	if (Local_PU8_x == 5)
+		Local_PU8_x++;
 	while (Local_PU8_CommPath != NULL)
 	{
 		Local_PU8_FullPath = String_PU8_StrConcat(Local_PU8_CommPath,
