@@ -1,5 +1,4 @@
 
-```markdown
 # Simple Shell Program for ALX
 
 ## Description
@@ -8,8 +7,9 @@ This repository contains a simple UNIX command interpreter written as part of th
 ## Installation
 Clone this repository to your local system. This will create a directory containing all the files needed to compile and run the shell.
 
+
 ```bash
-git clone https://github.com/Ma7moud_MSA/simple_shell.git
+git clone https://github.com/Ma7moudMSA/simple_shell.git
 ```
 
 ## Compilation
@@ -36,6 +36,9 @@ After compilation, the shell can be run with:
 - Moumen Hassan
 
 ## Acknowledgments
+
 This project is part of the curriculum for ALX School.
-```
+
+
+
 
